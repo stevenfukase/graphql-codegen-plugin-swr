@@ -53,6 +53,7 @@
     "@graphql-codegen/typescript": "^4.1.2",
     "@graphql-codegen/typescript-graphql-request": "^6.2.0",
     "@graphql-codegen/typescript-operations": "^4.4.0",
+    "@graphql-tools/apollo-engine-loader": "^8.0.13",
     "@types/jest": "^29.5.14",
     "@types/node": "^22.10.6",
     "@typescript-eslint/eslint-plugin": "^8.20.0",
