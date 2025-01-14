@@ -1,6 +1,6 @@
 {
   "name": "graphql-codegen-plugin-swr",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A GraphQL code generator plug-in that automatically generates utility functions for SWR.",
   "main": "build/main/index.js",
   "typings": "build/main/index.d.ts",
