@@ -20,9 +20,9 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-      - name: yarn install, and test
+      - name: pnpm install, and test
         run: |
-          yarn install --pure-lockfile
-          yarn test
+          pnpm install
+          pnpm test
         env:
           CI: true
