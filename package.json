@@ -1,11 +1,11 @@
 {
-  "name": "graphql-codegen-plugin-typescript-swr",
-  "version": "0.8.5",
+  "name": "graphql-codegen-plugin-swr",
+  "version": "0.0.1",
   "description": "A GraphQL code generator plug-in that automatically generates utility functions for SWR.",
   "main": "build/main/index.js",
   "typings": "build/main/index.d.ts",
   "module": "build/module/index.js",
-  "repository": "https://github.com/croutonn/graphql-codegen-plugin-typescript-swr",
+  "repository": "https://github.com/stevenfukase/graphql-codegen-plugin-swr",
   "license": "MIT",
   "engines": {
     "node": ">=16.0.0"
