@@ -28,9 +28,9 @@
     "build:module": "tsc -p tsconfig.module.json",
     "fix": "run-s fix:*",
     "fix:prettier": "prettier \"src/**/*.ts\" --write",
-    "fix:lint": "eslint src --ext .ts --fix",
+    "fix:lint": "eslint --fix",
     "test": "run-s build test:*",
-    "test:lint": "eslint src --ext .ts",
+    "test:lint": "eslint",
     "test:prettier": "prettier \"src/**/*.ts\" --list-different",
     "test:integrate": "jest --no-watchman",
     "watch:build": "tsc -p tsconfig.json -w"
