@@ -1,5 +1,7 @@
 # graphql-codegen-plugin-swr <!-- omit in toc -->
 
+_Forked from [graphql-codegen-plugin-typescript-swr](https://github.com/croutonn/graphql-codegen-plugin-typescript-swr)_
+
 A [GraphQL code generator](https://graphql-code-generator.com/) plug-in that automatically generates utility functions for [SWR](https://swr.vercel.app/).
 
 ## Table of Contents <!-- omit in toc -->
