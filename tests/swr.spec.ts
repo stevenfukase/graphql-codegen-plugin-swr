@@ -10,9 +10,14 @@ import {
   plugin as tsPlugin
 } from '@graphql-codegen/typescript'
 import { plugin as graphQLRequestPlugin } from '@graphql-codegen/typescript-graphql-request'
-import type { GraphQLRequestPluginConfig } from '@graphql-codegen/typescript-graphql-request/visitor'
 import type {
   TypeScriptDocumentsPluginConfig} from '@graphql-codegen/typescript-operations';
+
+// Define the type locally since it's just for testing
+interface GraphQLRequestPluginConfig {
+  rawRequest?: boolean;
+  scalars?: { [name: string]: string };
+}
 import {
   plugin as tsDocumentsPlugin
 } from '@graphql-codegen/typescript-operations'
@@ -33,7 +38,7 @@ const readOutput = (name: string): string =>
   fs.readFileSync(resolve(__dirname, `./outputs/${name}.ts`), 'utf-8')
 
 describe('SWR', () => {
-  const schema = buildClientSchema(require('../dev-test/githunt/schema.json'))
+  const schema = buildClientSchema(JSON.parse(fs.readFileSync(resolve(__dirname, '../dev-test/githunt/schema.json'), 'utf-8')))
 
   const basicDoc = parse(/* GraphQL */ `
     query feed {

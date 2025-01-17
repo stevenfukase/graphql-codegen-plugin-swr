@@ -1,3 +1,4 @@
 process.on('unhandledRejection', (err) => {
-    fail(err);
+  // Using global fail() from Jest
+  globalThis.fail?.(err);
 });

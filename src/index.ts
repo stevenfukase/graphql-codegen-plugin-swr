@@ -41,7 +41,7 @@ export const plugin: PluginFunction<RawSWRPluginConfig> = (
   }
 }
 
-export const validate: PluginValidateFn<any> = async (
+export const validate: PluginValidateFn<RawSWRPluginConfig> = async (
   _schema: GraphQLSchema,
   _documents: Types.DocumentFile[],
   _config: RawSWRPluginConfig,

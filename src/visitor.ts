@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import type {
   ClientSideBasePluginConfig,
   LoadedFragment,
@@ -8,9 +9,19 @@ import {
   indentMultiline,
 } from '@graphql-codegen/visitor-plugin-common'
 import type { GraphQLSchema, OperationDefinitionNode } from 'graphql'
+// @ts-expect-error -- Used in generated code
+import type { GraphQLError } from 'graphql'
 import { Kind } from 'graphql'
 import glob from 'micromatch'
 import { pascalCase } from 'pascal-case'
+// @ts-expect-error -- Used in generated code
+import type { GraphQLClient } from 'graphql-request'
+
+// @ts-expect-error -- Used in generated code
+type SdkFunctionWrapper = <T>(action: (requestHeaders?: Record<string, string>) => Promise<T>, operationName: string, operationType?: string) => Promise<T>
+
+// @ts-expect-error -- Used in generated code
+type Headers = Record<string, string>
 
 import type { RawSWRPluginConfig } from './config'
 
