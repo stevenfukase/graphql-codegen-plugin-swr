@@ -1,5 +1,5 @@
 declare module '*/comment-added.subscription.graphql' {
-  import { DocumentNode } from 'graphql';
+  import type { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
   export const onCommentAdded: DocumentNode;
 
@@ -7,7 +7,7 @@ declare module '*/comment-added.subscription.graphql' {
 }
 
 declare module '*/comment.query.graphql' {
-  import { DocumentNode } from 'graphql';
+  import type { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
   export const Comment: DocumentNode;
 
@@ -15,7 +15,7 @@ declare module '*/comment.query.graphql' {
 }
 
 declare module '*/comments-page-comment.fragment.graphql' {
-  import { DocumentNode } from 'graphql';
+  import type { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
   export const CommentsPageComment: DocumentNode;
 
@@ -23,7 +23,7 @@ declare module '*/comments-page-comment.fragment.graphql' {
 }
 
 declare module '*/current-user.query.graphql' {
-  import { DocumentNode } from 'graphql';
+  import type { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
   export const CurrentUserForProfile: DocumentNode;
 
@@ -31,7 +31,7 @@ declare module '*/current-user.query.graphql' {
 }
 
 declare module '*/feed-entry.fragment.graphql' {
-  import { DocumentNode } from 'graphql';
+  import type { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
   export const FeedEntry: DocumentNode;
 
@@ -39,7 +39,7 @@ declare module '*/feed-entry.fragment.graphql' {
 }
 
 declare module '*/feed.query.graphql' {
-  import { DocumentNode } from 'graphql';
+  import type { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
   export const Feed: DocumentNode;
 
@@ -47,7 +47,7 @@ declare module '*/feed.query.graphql' {
 }
 
 declare module '*/new-entry.mutation.graphql' {
-  import { DocumentNode } from 'graphql';
+  import type { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
   export const submitRepository: DocumentNode;
 
@@ -55,7 +55,7 @@ declare module '*/new-entry.mutation.graphql' {
 }
 
 declare module '*/repo-info.fragment.graphql' {
-  import { DocumentNode } from 'graphql';
+  import type { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
   export const RepoInfo: DocumentNode;
 
@@ -63,7 +63,7 @@ declare module '*/repo-info.fragment.graphql' {
 }
 
 declare module '*/submit-comment.mutation.graphql' {
-  import { DocumentNode } from 'graphql';
+  import type { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
   export const submitComment: DocumentNode;
 
@@ -71,7 +71,7 @@ declare module '*/submit-comment.mutation.graphql' {
 }
 
 declare module '*/vote-buttons.fragment.graphql' {
-  import { DocumentNode } from 'graphql';
+  import type { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
   export const VoteButtons: DocumentNode;
 
@@ -79,7 +79,7 @@ declare module '*/vote-buttons.fragment.graphql' {
 }
 
 declare module '*/vote.mutation.graphql' {
-  import { DocumentNode } from 'graphql';
+  import type { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
   export const vote: DocumentNode;
 

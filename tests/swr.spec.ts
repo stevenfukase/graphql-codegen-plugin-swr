@@ -1,21 +1,25 @@
 import fs from 'fs'
 import { resolve } from 'path'
 
-import { Types, mergeOutputs } from '@graphql-codegen/plugin-helpers'
+import type { Types} from '@graphql-codegen/plugin-helpers';
+import { mergeOutputs } from '@graphql-codegen/plugin-helpers'
 import { validateTs } from '@graphql-codegen/testing'
+import type {
+  TypeScriptPluginConfig} from '@graphql-codegen/typescript';
 import {
-  plugin as tsPlugin,
-  TypeScriptPluginConfig,
+  plugin as tsPlugin
 } from '@graphql-codegen/typescript'
 import { plugin as graphQLRequestPlugin } from '@graphql-codegen/typescript-graphql-request'
-import { GraphQLRequestPluginConfig } from '@graphql-codegen/typescript-graphql-request/visitor'
+import type { GraphQLRequestPluginConfig } from '@graphql-codegen/typescript-graphql-request/visitor'
+import type {
+  TypeScriptDocumentsPluginConfig} from '@graphql-codegen/typescript-operations';
 import {
-  plugin as tsDocumentsPlugin,
-  TypeScriptDocumentsPluginConfig,
+  plugin as tsDocumentsPlugin
 } from '@graphql-codegen/typescript-operations'
-import { parse, GraphQLSchema, buildClientSchema } from 'graphql'
+import type { GraphQLSchema} from 'graphql';
+import { parse, buildClientSchema } from 'graphql'
 
-import { RawSWRPluginConfig } from '../src/config'
+import type { RawSWRPluginConfig } from '../src/config'
 import { plugin } from '../src/index'
 
 type PluginsConfig = Partial<
