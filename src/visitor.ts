@@ -18,7 +18,11 @@ import { pascalCase } from 'pascal-case'
 import type { GraphQLClient } from 'graphql-request'
 
 // @ts-expect-error -- Used in generated code
-type SdkFunctionWrapper = <T>(action: (requestHeaders?: Record<string, string>) => Promise<T>, operationName: string, operationType?: string) => Promise<T>
+type SdkFunctionWrapper = <T>(
+  action: (requestHeaders?: Record<string, string>) => Promise<T>,
+  operationName: string,
+  operationType?: string,
+) => Promise<T>
 
 // @ts-expect-error -- Used in generated code
 type Headers = Record<string, string>
