@@ -1,21 +1,22 @@
 import { extname } from 'path'
 
-import {
+import type {
   Types,
   PluginValidateFn,
   PluginFunction,
-  oldVisit,
 } from '@graphql-codegen/plugin-helpers'
-import { LoadedFragment } from '@graphql-codegen/visitor-plugin-common'
-import { GraphQLSchema, concatAST, Kind, FragmentDefinitionNode } from 'graphql'
+import { oldVisit } from '@graphql-codegen/plugin-helpers'
+import type { LoadedFragment } from '@graphql-codegen/visitor-plugin-common'
+import type { GraphQLSchema, FragmentDefinitionNode } from 'graphql'
+import { concatAST, Kind } from 'graphql'
 
-import { RawSWRPluginConfig } from './config'
+import type { RawSWRPluginConfig } from './config'
 import { SWRVisitor } from './visitor'
 
 export const plugin: PluginFunction<RawSWRPluginConfig> = (
   schema: GraphQLSchema,
   documents: Types.DocumentFile[],
-  config: RawSWRPluginConfig
+  config: RawSWRPluginConfig,
 ) => {
   const allAst = concatAST(documents.map((v) => v.document))
 
@@ -40,11 +41,11 @@ export const plugin: PluginFunction<RawSWRPluginConfig> = (
   }
 }
 
-export const validate: PluginValidateFn<any> = async (
+export const validate: PluginValidateFn<RawSWRPluginConfig> = async (
   _schema: GraphQLSchema,
   _documents: Types.DocumentFile[],
   _config: RawSWRPluginConfig,
-  outputFile: string
+  outputFile: string,
 ) => {
   if (extname(outputFile) !== '.ts') {
     throw new Error(`Plugin "typescript-swr" requires extension to be ".ts"!`)

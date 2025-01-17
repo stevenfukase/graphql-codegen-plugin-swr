@@ -1,4 +1,5 @@
 import { GraphQLSchema } from 'graphql';
+
 import { SWRVisitor } from '../src/visitor'
 
 describe('SWRVisitor', () => {

@@ -1,11 +1,15 @@
-const { resolve } = require('path')
-const { pathsToModuleNameMapper } = require('ts-jest')
+import { fileURLToPath } from 'url'
+import { resolve, dirname } from 'path'
+import { createRequire } from 'module'
 
+const require = createRequire(import.meta.url)
 const pkg = require('./package.json')
-const tsconfig = require('./tsconfig.json')
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
 const CI = !!process.env.CI
 
-module.exports = () => {
+export default () => {
   return {
     displayName: pkg.name,
     rootDir: __dirname,
@@ -14,12 +18,19 @@ module.exports = () => {
     restoreMocks: true,
     reporters: ['default'],
     modulePathIgnorePatterns: ['dist'],
-    moduleNameMapper: pathsToModuleNameMapper(
-      tsconfig.compilerOptions.paths || [],
-      {
-        prefix: `./`,
-      }
-    ),
+    extensionsToTreatAsEsm: ['.ts', '.tsx'],
+    transform: {
+      '^.+\\.tsx?$': [
+        'ts-jest',
+        {
+          useESM: true,
+          tsconfig: 'tsconfig.json'
+        }
+      ]
+    },
+    moduleNameMapper: {
+      '^(\\.{1,2}/.*)\\.js$': '$1'
+    },
     cacheDirectory: resolve(
       __dirname,
       `${CI ? '' : 'node_modules/'}.cache/jest`

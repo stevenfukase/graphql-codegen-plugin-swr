@@ -1,21 +1,30 @@
 import fs from 'fs'
 import { resolve } from 'path'
 
-import { Types, mergeOutputs } from '@graphql-codegen/plugin-helpers'
+import type { Types} from '@graphql-codegen/plugin-helpers';
+import { mergeOutputs } from '@graphql-codegen/plugin-helpers'
 import { validateTs } from '@graphql-codegen/testing'
+import type {
+  TypeScriptPluginConfig} from '@graphql-codegen/typescript';
 import {
-  plugin as tsPlugin,
-  TypeScriptPluginConfig,
+  plugin as tsPlugin
 } from '@graphql-codegen/typescript'
 import { plugin as graphQLRequestPlugin } from '@graphql-codegen/typescript-graphql-request'
-import { GraphQLRequestPluginConfig } from '@graphql-codegen/typescript-graphql-request/visitor'
-import {
-  plugin as tsDocumentsPlugin,
-  TypeScriptDocumentsPluginConfig,
-} from '@graphql-codegen/typescript-operations'
-import { parse, GraphQLSchema, buildClientSchema } from 'graphql'
+import type {
+  TypeScriptDocumentsPluginConfig} from '@graphql-codegen/typescript-operations';
 
-import { RawSWRPluginConfig } from '../src/config'
+// Define the type locally since it's just for testing
+interface GraphQLRequestPluginConfig {
+  rawRequest?: boolean;
+  scalars?: { [name: string]: string };
+}
+import {
+  plugin as tsDocumentsPlugin
+} from '@graphql-codegen/typescript-operations'
+import type { GraphQLSchema} from 'graphql';
+import { parse, buildClientSchema } from 'graphql'
+
+import type { RawSWRPluginConfig } from '../src/config'
 import { plugin } from '../src/index'
 
 type PluginsConfig = Partial<
@@ -29,7 +38,7 @@ const readOutput = (name: string): string =>
   fs.readFileSync(resolve(__dirname, `./outputs/${name}.ts`), 'utf-8')
 
 describe('SWR', () => {
-  const schema = buildClientSchema(require('../dev-test/githunt/schema.json'))
+  const schema = buildClientSchema(JSON.parse(fs.readFileSync(resolve(__dirname, '../dev-test/githunt/schema.json'), 'utf-8')))
 
   const basicDoc = parse(/* GraphQL */ `
     query feed {
