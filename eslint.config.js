@@ -1,5 +1,5 @@
 import airbnbBase from 'eslint-config-airbnb-base';
-import airbnbTypeScript from 'eslint-config-airbnb-typescript/base';
+import airbnbTypeScript from 'eslint-config-airbnb-typescript/base.js';
 import airbnbHooks from 'eslint-config-airbnb/hooks';
 import prettier from 'eslint-config-prettier';
 import tseslint from '@typescript-eslint/eslint-plugin';
