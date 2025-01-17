@@ -6,11 +6,10 @@ import tseslint from '@typescript-eslint/eslint-plugin';
 import tsParser from '@typescript-eslint/parser';
 import * as importPlugin from 'eslint-plugin-import';
 
-// Safely extract import plugin rules
 const importRules = importPlugin?.configs?.recommended?.rules ?? {};
 
 export default [
-  // Base config for all files
+  // Base configuration for all files
   {
     ignores: ['node_modules', 'build', 'coverage', 'tests/outputs'],
     linterOptions: {
@@ -20,21 +19,19 @@ export default [
       ecmaVersion: 2021,
       sourceType: 'module',
       globals: {
-        // ES2021 globals
+        // Common globals
+        console: true,
+        globalThis: true,
+        // Browser globals
+        window: true,
+        document: true,
+        // ES globals
         Array: 'readonly',
-        ArrayBuffer: 'readonly',
+        BigInt: 'readonly',
         Boolean: 'readonly',
-        DataView: 'readonly',
         Date: 'readonly',
         Error: 'readonly',
-        EvalError: 'readonly',
-        Float32Array: 'readonly',
-        Float64Array: 'readonly',
         Function: 'readonly',
-        Int8Array: 'readonly',
-        Int16Array: 'readonly',
-        Int32Array: 'readonly',
-        Intl: 'readonly',
         JSON: 'readonly',
         Map: 'readonly',
         Math: 'readonly',
@@ -42,35 +39,30 @@ export default [
         Object: 'readonly',
         Promise: 'readonly',
         Proxy: 'readonly',
-        RangeError: 'readonly',
-        ReferenceError: 'readonly',
         Reflect: 'readonly',
         RegExp: 'readonly',
         Set: 'readonly',
         String: 'readonly',
         Symbol: 'readonly',
-        SyntaxError: 'readonly',
-        TypeError: 'readonly',
-        URIError: 'readonly',
+        WeakMap: 'readonly',
+        WeakSet: 'readonly',
+        // TypedArrays
+        ArrayBuffer: 'readonly',
+        DataView: 'readonly',
+        Float32Array: 'readonly',
+        Float64Array: 'readonly',
+        Int8Array: 'readonly',
+        Int16Array: 'readonly',
+        Int32Array: 'readonly',
         Uint8Array: 'readonly',
         Uint8ClampedArray: 'readonly',
         Uint16Array: 'readonly',
         Uint32Array: 'readonly',
-        WeakMap: 'readonly',
-        WeakSet: 'readonly',
-        // Additional globals
-        BigInt: true,
-        console: true,
-        WebAssembly: true,
-        // Browser globals
-        window: true,
-        document: true,
-        globalThis: true,
       },
     },
   },
 
-  // TypeScript files config
+  // TypeScript configuration
   {
     files: ['**/*.ts', '**/*.tsx'],
     plugins: {
@@ -97,26 +89,29 @@ export default [
       },
     },
     rules: {
+      // Extend base configurations
       ...airbnbBase.rules,
       ...airbnbTypeScript.rules,
       ...airbnbHooks.rules,
       ...tseslint.configs.recommended.rules,
       ...importRules,
-      'no-underscore-dangle': [
-        'error',
-        {
-          allowAfterThis: true,
-          allowAfterSuper: true,
-          allowAfterThisConstructor: true,
-        },
-      ],
-      'no-restricted-imports': 'off',
+      ...prettier.rules,
+
+      // TypeScript specific overrides
       '@typescript-eslint/no-explicit-any': 'off',
       '@typescript-eslint/explicit-module-boundary-types': 'off',
+
+      // Custom rule configurations
+      'no-underscore-dangle': ['error', {
+        allowAfterThis: true,
+        allowAfterSuper: true,
+        allowAfterThisConstructor: true,
+      }],
+      'no-restricted-imports': 'off',
     },
   },
 
-  // Library source files config
+  // Library source files configuration
   {
     files: ['./src/lib/**/*.ts'],
     rules: {
@@ -124,7 +119,7 @@ export default [
     },
   },
 
-  // Test files config
+  // Test files configuration
   {
     files: ['./tests/**/*.ts'],
     rules: {
