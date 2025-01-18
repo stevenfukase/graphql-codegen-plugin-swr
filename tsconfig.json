@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "incremental": true,
-    "target": "es2017",
+    "target": "esnext",
     "rootDir": ".",
     "moduleResolution": "node",
     "module": "commonjs",
@@ -18,8 +18,14 @@
     "listEmittedFiles": false,
     "listFiles": false,
     "pretty": true,
-    "lib": ["es2017", "dom"],
-    "types": ["node", "jest"]
+    "lib": [
+      "es2022",
+      "dom"
+    ],
+    "types": [
+      "node",
+      "jest"
+    ]
   },
   "include": [
     "src/**/*.ts",
@@ -27,6 +33,8 @@
     "dev-test/**/*.ts",
     "dev-test/**/*.tsx"
   ],
-  "exclude": ["node_modules/**"],
+  "exclude": [
+    "node_modules/**"
+  ],
   "compileOnSave": false
 }
