@@ -78,7 +78,7 @@ const composeQueryHandler = (
   }variables${optionalVariables}: ${variablesType}, config?: SWRConfigInterface<${responseType}, ClientError>) {
   return useSWR<${responseType}, ClientError>(${
     config.autogenKey
-      ? `genKey<${variablesType}>('${pascalName}', variables)`
+      ? `withKeyGenerator<${variablesType}>('${pascalName}', variables)`
       : 'key'
   }, () => sdk.${name}(variables), config);
 }`)
@@ -229,8 +229,29 @@ export class SWRVisitor extends ClientSideBaseVisitor<
 ) => [keyof Variables, Variables[keyof Variables] | null] | null;`)
     }
 
+    codes.push(`export type KeyGenerator = <
+  V extends Record<string, unknown> = Record<string, unknown>,
+>(
+  name: string,
+  object?: V
+) => SWRKeyInterface;
+const defaultKeyGenerator: KeyGenerator = <
+  V extends Record<string, unknown> = Record<string, unknown>,
+>(
+  name: string,
+  object = {} as V
+) => [
+  name,
+  ...Object.keys(object)
+    .sort()
+    .map((key) => object[key]),
+];`)
+
     // Add getSdkWithHooks function
-    codes.push(`export function getSdkWithHooks(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
+    codes.push(`export function getSdkWithHooks(client: GraphQLClient,
+  withKeyGenerator: KeyGenerator = defaultKeyGenerator,
+  withWrapper: SdkFunctionWrapper = defaultWrapper
+) {
   const sdk = getSdk(client, withWrapper);`)
 
     // Add the utility for useSWRInfinite
@@ -251,13 +272,6 @@ export class SWRVisitor extends ClientSideBaseVisitor<
         fieldValue: Variables[typeof fieldName]
       ) => query({ ...variables, [fieldName]: fieldValue } as Variables)
   }`)
-    }
-
-    // Add the function for auto-generation key for SWR
-    if (config.autogenSWRKey) {
-      codes.push(
-        `  const genKey = <V extends Record<string, unknown> = Record<string, unknown>>(name: string, object: V = {} as V): SWRKeyInterface => [name, ...Object.keys(object).sort().map(key => object[key])];`,
-      )
     }
 
     // Add return statement for getSdkWithHooks function and close the function
